@@ -9,10 +9,11 @@ import chalk from 'chalk';
 
 const options = program
   .option('-o,  --override', 'override nightwatch.d.ts file')
+  .option('-p, --path <path>', 'relative path to Nightwatch project')
   .parse()
   .opts()
 
-let nightwatchProjectPath: string = ''
+let absoluteNightwatchProjectPath: string = options.path || ''
 const override = options.override
 
 if (override) {
@@ -20,18 +21,27 @@ if (override) {
 }
 
 function getNightwatchConf(): any {
+  if (absoluteNightwatchProjectPath) {
+    absoluteNightwatchProjectPath = path.join(process.cwd(), absoluteNightwatchProjectPath)
+    const nightwatchConfPath = path.join(absoluteNightwatchProjectPath, 'nightwatch.conf.js')
+    if (fs.existsSync(nightwatchConfPath)) {
+      return require(nightwatchConfPath)
+    }
+    throw Error(`nightwatch.conf.js does not exist at the provided Nightwatch project path: ${nightwatchConfPath}`)
+  }
+
   if (fs.existsSync('nightwatch.conf.js')) {
-    nightwatchProjectPath = process.cwd()
-    return require(path.join(process.cwd(), 'nightwatch.conf.js'))
+    absoluteNightwatchProjectPath = process.cwd()
+    return require(path.join(absoluteNightwatchProjectPath, 'nightwatch.conf.js'))
   } else {
     console.warn(chalk.yellow('Unable to find nightwatch.conf.js file at root of project'))
 
     const relativeNightwatchProjectPath = readlineSync.question('Path to Nightwatch Project: ')
-    nightwatchProjectPath = path.join(process.cwd(), relativeNightwatchProjectPath)
-    if (!nightwatchProjectPath) {
+    absoluteNightwatchProjectPath = path.join(process.cwd(), relativeNightwatchProjectPath)
+    if (!absoluteNightwatchProjectPath) {
       throw Error('Path to Nightwatch project must be provided')
     }
-    return require(path.join(nightwatchProjectPath, 'nightwatch.conf.js'))
+    return require(path.join(absoluteNightwatchProjectPath, 'nightwatch.conf.js'))
   }
 }
 
@@ -46,8 +56,8 @@ if (!page_objects_path || page_objects_path.length === 0) {
   console.log(chalk.blue('No page objects to generate types for.'))
 } else {
   generatedPageObject = generateCustomPageObjectTypes(
-    nightwatchProjectPath,
-    page_objects_path.map(page_object_path => `${nightwatchProjectPath}/${page_object_path}`)
+    absoluteNightwatchProjectPath,
+    page_objects_path.map(page_object_path => `${absoluteNightwatchProjectPath}/${page_object_path}`)
   )
 }
 
@@ -57,7 +67,7 @@ if (!plugins || plugins.length === 0) {
   generatedPluginImports = generatePluginImports(plugins)
 }
 
-const nightwatchTypesDirectory = path.join(`${nightwatchProjectPath}/nightwatch/types`)
+const nightwatchTypesDirectory = path.join(`${absoluteNightwatchProjectPath}/nightwatch/types`)
 const templateOutput = templateFile(generatedPageObject, generatedPluginImports)
 if (!fs.existsSync(`${nightwatchTypesDirectory}/nightwatch.d.ts`) || override) {
   if (!fs.existsSync(nightwatchTypesDirectory)) {
