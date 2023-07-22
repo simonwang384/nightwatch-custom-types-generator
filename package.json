@@ -1,22 +1,27 @@
 {
   "name": "nightwatch-custom-types-generator",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
-    "build": "npm run clean && npx tsc --build",
+    "build": "npm run clean && npx tsc --build && cpy --flat src/template/nightwatch.d.ts.hbs dist/template",
     "clean": "rimraf dist",
+    "prepack": "npm run build",
     "test": "npm run start -- -o -p tests && cd tests && npm run test"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/readline-sync": "^1.4.4",
+    "cpy-cli": "^5.0.0",
     "rimraf": "^5.0.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
   },
+  "files": [
+    "dist/**/*"
+  ],
   "dependencies": {
     "chalk": "4.1.2",
     "commander": "^11.0.0",
