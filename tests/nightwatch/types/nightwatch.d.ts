@@ -7,12 +7,12 @@ import 'nightwatch'
 
 declare module 'nightwatch' {
   export interface NightwatchCustomPageObjects {
-    google: {
-      image: {
-        imageLandingPage: () => ImageLandingPage
-      },
-      landingPage: () => LandingPage
+  google: {
+    image: {
+      imageLandingPage: () => ImageLandingPage
     },
-    bingPage: () => BingPage
-  }
+    landingPage: () => LandingPage
+  },
+  bingPage: () => BingPage
+}
 }

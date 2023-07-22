@@ -7,7 +7,7 @@
     "start": "ts-node src/index.ts",
     "build": "npm run clean && npx tsc --build",
     "clean": "rimraf dist",
-    "test": "cd tests && npm run test"
+    "test": "npm run start -- -o -p tests && cd tests && npm run test"
   },
   "author": "",
   "license": "ISC",
