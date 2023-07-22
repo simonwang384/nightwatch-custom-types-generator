@@ -13,7 +13,7 @@ const options = program
   .parse()
   .opts()
 
-let absoluteNightwatchProjectPath: string = options.path || ''
+let absoluteNightwatchProjectPath: string = ''
 const override = options.override
 
 if (override) {
@@ -21,13 +21,9 @@ if (override) {
 }
 
 function getNightwatchConf(): any {
-  if (absoluteNightwatchProjectPath) {
-    absoluteNightwatchProjectPath = path.join(process.cwd(), absoluteNightwatchProjectPath)
-    const nightwatchConfPath = path.join(absoluteNightwatchProjectPath, 'nightwatch.conf.js')
-    if (fs.existsSync(nightwatchConfPath)) {
-      return require(nightwatchConfPath)
-    }
-    throw Error(`nightwatch.conf.js does not exist at the provided Nightwatch project path: ${nightwatchConfPath}`)
+  if (options.path) {
+    absoluteNightwatchProjectPath = path.join(process.cwd(), options.path)
+    return require(path.join(absoluteNightwatchProjectPath, 'nightwatch.conf.js'))
   }
 
   if (fs.existsSync('nightwatch.conf.js')) {
@@ -36,7 +32,7 @@ function getNightwatchConf(): any {
   } else {
     console.warn(chalk.yellow('Unable to find nightwatch.conf.js file at root of project'))
 
-    const relativeNightwatchProjectPath = readlineSync.question('Path to Nightwatch Project: ')
+    const relativeNightwatchProjectPath = readlineSync.question('Realive path to Nightwatch Project: ')
     absoluteNightwatchProjectPath = path.join(process.cwd(), relativeNightwatchProjectPath)
     if (!absoluteNightwatchProjectPath) {
       throw Error('Path to Nightwatch project must be provided')
