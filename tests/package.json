@@ -1,0 +1,21 @@
+{
+  "name": "nightwatch-types-generator-tests",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "nightwatch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@nightwatch/apitesting": "^0.2.2",
+    "@types/nightwatch": "^2.3.24",
+    "@types/readline-sync": "^1.4.4",
+    "chromedriver": "^114.0.3",
+    "nightwatch": "^2.6.21",
+    "nightwatch-saucelabs-endsauce": "^2.3.1",
+    "rimraf": "^5.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  }
+}
