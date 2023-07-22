@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 import readlineSync from 'readline-sync'
 import fs from 'fs'
 import path from 'path'
