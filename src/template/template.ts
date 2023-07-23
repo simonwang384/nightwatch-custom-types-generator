@@ -8,7 +8,7 @@ export function templateFile(generatedPageObject: GeneratedPageObject, generated
 
   const templateObject = {
     interfaceImports: generatedPageObject.interfaceImports.join('\n').replaceAll('\\', '/'),
-    pageObject: JSON.stringify(generatedPageObject.pageObject, null, 2).replaceAll(/"/g, ''),
+    pageObject: JSON.stringify(generatedPageObject.pageObjects, null, 2).replaceAll(/"/g, ''),
     pluginImports: generatedPluginImports.imports.join('\n').replaceAll('\\', '/'),
   }
 

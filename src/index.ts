@@ -44,10 +44,12 @@ function getNightwatchConf(): any {
 }
 
 const nightwatchConf = getNightwatchConf()
-const page_objects_path: string[] | undefined = nightwatchConf.page_objects_path
+const page_objects_path: string[] | undefined = typeof nightwatchConf.page_objects_path === 'string' ? 
+  [nightwatchConf.page_objects_path] :
+  nightwatchConf.page_objects_path
 const plugins: string[] | undefined = nightwatchConf.plugins
 
-let generatedPageObject: GeneratedPageObject = { interfaceImports: [], pageObject: {} }
+let generatedPageObject: GeneratedPageObject = { interfaceImports: [], pageObjects: {} }
 let generatedPluginImports: GeneratedPluginImports = { imports: [] }
 
 if (!page_objects_path || page_objects_path.length === 0) {

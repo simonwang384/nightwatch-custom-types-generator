@@ -1,6 +1,6 @@
 export interface GeneratedPageObject {
   interfaceImports: string[]
-  pageObject: Record<string, any>
+  pageObjects: Record<string, any>
 }
 
 export interface GeneratedPluginImports {

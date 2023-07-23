@@ -5,7 +5,7 @@ import fs from 'fs'
 import relative from 'relative';
 import {GeneratedPageObject} from './models'
 
-const pageObject: Record<string, any> = {}
+const pageObjects: Record<string, any> = {}
 const interfaceImports: string [] = []
 let interfaces: string[] = []
 
@@ -69,15 +69,15 @@ export function generateCustomPageObjectTypes(nightwatchProjectPath: string, pag
       }
   
       if (treeChildren.children) {
-        pageObject[treeChildren.name] = {};
+        pageObjects[treeChildren.name] = {};
         getTreeChildrenObjects(
-          pageObject,
+          pageObjects,
           treeChildren.name,
           treeChildren.children
         );
       } else {
         const fileName = getFileNameWithoutExtensions(treeChildren.name);
-        pageObject[fileName] = createArrowFunctionString(treeChildren);
+        pageObjects[fileName] = createArrowFunctionString(treeChildren);
       }
     }
     interpolateInterfaceImports(nightwatchProjectPath, page_objects_path)
@@ -85,6 +85,6 @@ export function generateCustomPageObjectTypes(nightwatchProjectPath: string, pag
   }
   return {
     interfaceImports,
-    pageObject
+    pageObjects
   }
 }
