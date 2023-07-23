@@ -74,5 +74,26 @@ module.exports = {
         server_path: '',
       }
     },
+
+    chrome_ci: {
+      desiredCapabilities: {
+        browserName: 'chrome',
+        acceptSslCerts: true,
+        'goog:chromeOptions': {
+          w3c: true,
+          args: [
+            'no-sandbox',
+            'ignore-certificate-errors',
+            'allow-insecure-localhost',
+            'headless'
+          ],
+        }
+      },
+
+      webdriver: {
+        start_process: true,
+        server_path: '',
+      }
+    }
   },
 };

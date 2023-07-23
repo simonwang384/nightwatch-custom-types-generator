@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "nightwatch"
+    "test": "nightwatch",
+    "test:ci": "nightwatch --env chrome_ci"
   },
   "author": "",
   "license": "ISC",

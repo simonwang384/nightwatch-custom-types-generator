@@ -8,7 +8,7 @@
     "build": "npm run clean && npx tsc --build && cpy --flat src/template/nightwatch.d.ts.hbs dist/template",
     "clean": "rimraf dist",
     "prepack": "npm run build",
-    "test": "npm run start -- -o -p tests && cd tests && npm install && npm run test"
+    "test": "npm run start -- -o -p tests && cd tests && npm install && npm run test:ci"
   },
   "author": "",
   "license": "ISC",
