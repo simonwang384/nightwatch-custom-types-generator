@@ -10,7 +10,7 @@ const interfaceImports: string [] = []
 let interfaces: string[] = []
 
 function interpolateInterfaceImports(nightwatchProjectPath: string, page_objects_path: string) {
-  const relativeTypesPath = relative(path.join(nightwatchProjectPath, 'types/nightwatch.d.ts'), page_objects_path)
+  const relativeTypesPath = relative(path.join(nightwatchProjectPath, 'nightwatch/types/nightwatch.d.ts'), page_objects_path)
   interfaceImports.push(`import { ${interfaces.join(', ')} } from '${relativeTypesPath}'`)
 }
 
