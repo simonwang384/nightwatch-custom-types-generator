@@ -8,7 +8,7 @@ The process is usually like this for page objects:
 
 1. Create typed page objects
 2. Create a `types/nightwatch.d.ts` file and override the `nightwatch` module
-3. Declare a module for `nightwatch` and override the type `NightwatchCustomPageObjects`
+3. Declare the module for `nightwatch` and override the type `NightwatchCustomPageObjects`
 4. Pray it works
     - Usually if it doesn't work something might be misconfigured in your `tsconfig.json` file.
 
@@ -17,6 +17,8 @@ On paper that doesn't sound too bad but it can get bad. Custom page objects are 
 This is where Nightwatch Custom Types Generator comes in! Nightwatch Custom Types Generator will help with the generation of these custom page objects and their related types. 
 
 ## Demo
+
+![Demo](./demo/demo.gif)
 
 ## Installation
 
@@ -30,7 +32,6 @@ npm install --save-dev nightwatch-custom-types-generator
 | - | - |
 | `-o, --override` | Override the current `nightwatch.d.ts` file with the custom types generated |
 | `-p, --path` | Relative path to your Nightwatch project |
-
 
 Run this command in the root of your Nightwatch project
 
@@ -168,6 +169,35 @@ This isn't the best test but it will suffice for covering most of what the scrip
 > It's not importing the interfaces correctly
 
 - If it's not importing the interfaces correctly it most likely means you're not exporting the interfaces in a centralized located. It's recommended to create a `index.ts` file at the root of your page object directory that helps export all your relevant interfaces, functions, etc... You can see an example [here](./tests/nightwatch/page-objects/index.ts)
+
+> What is the right project structure?
+
+- The recommended Nightwatch project structure is all relevant `Nightwatch` files and folders under that `nightwatch` directory like so:
+
+```sh
+/nightwatch
+└───tsconfig.json
+│
+└───/page-objects
+│   │
+│   └───testPage1.ts
+│   └───testPage2.ts
+│
+└───/tests
+│   │
+│   └───test1.ts
+│   └───test2.ts
+│
+└───/commands
+│   │
+│   └───customWait.ts
+│
+└───/types
+    │
+    nightwatch.d.ts
+```
+
+The above directory tree was grabbed from [here](https://www.davidmello.com/nightwatch-typescript-custom-command-extensibility/). Definitely a good read on creating custom TypeScript commands!
 
 ## Helpful Links
 
