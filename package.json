@@ -11,6 +11,12 @@
     "url": "https://github.com/simonwang384/nightwatch-custom-types-generator/issues"
   },
   "homepage": "https://github.com/simonwang384/nightwatch-custom-types-generator#readme",
+  "keywords": [
+    "Nightwatch.js",
+    "nightwatch",
+    "SauceLabs",
+    "selenium"
+  ],
   "scripts": {
     "start": "ts-node src/index.ts",
     "build": "npm run clean && npx tsc --build && cpy --flat src/template/nightwatch.d.ts.hbs dist/template",
