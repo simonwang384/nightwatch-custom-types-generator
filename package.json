@@ -3,6 +3,14 @@
   "version": "0.1.0",
   "description": "",
   "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simonwang384/nightwatch-custom-types-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/simonwang384/nightwatch-custom-types-generator/issues"
+  },
+  "homepage": "https://github.com/simonwang384/nightwatch-custom-types-generator#readme",
   "scripts": {
     "start": "ts-node src/index.ts",
     "build": "npm run clean && npx tsc --build && cpy --flat src/template/nightwatch.d.ts.hbs dist/template",
