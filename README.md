@@ -16,6 +16,8 @@ On paper that doesn't sound too bad but it can get bad. Custom page objects are 
 
 This is where Nightwatch Custom Types Generator comes in! Nightwatch Custom Types Generator will help with the generation of these custom page objects and their related types. 
 
+This tool has been tested with version `3.1.1` and `2.6.21` of Nightwatch. The tool will most likely continue to work with future versions as well. If you notice it not working please open a issue.
+
 ## Demo
 
 ![Demo](https://github.com/simonwang384/nightwatch-custom-types-generator/blob/main/demo/demo.gif?raw=true)
