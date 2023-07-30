@@ -69,11 +69,14 @@ if (!plugins || plugins.length === 0) {
 
 const nightwatchTypesDirectory = path.join(`${absoluteNightwatchProjectPath}/nightwatch/types`)
 const templateOutput = templateFile(generatedPageObject, generatedPluginImports)
-if (!fs.existsSync(`${nightwatchTypesDirectory}/nightwatch.d.ts`) || override) {
+let absoluteNightwatchTypesFilePath = path.join(nightwatchTypesDirectory, 'nightwatch.d.ts')
+if (!fs.existsSync(absoluteNightwatchTypesFilePath) || override) {
   if (!fs.existsSync(nightwatchTypesDirectory)) {
     fs.mkdirSync(nightwatchTypesDirectory)
   }
-  fs.writeFileSync(`${nightwatchTypesDirectory}/nightwatch.d.ts`, templateOutput)
 } else {
-  fs.writeFileSync(`${nightwatchTypesDirectory}/nightwatch-test.d.ts`, templateOutput)
+  absoluteNightwatchTypesFilePath = path.join(nightwatchTypesDirectory, 'nightwatch-test.d.ts')
 }
+
+fs.writeFileSync(absoluteNightwatchTypesFilePath, templateOutput)
+console.log(chalk.green(`Successfully created custom types at ${absoluteNightwatchTypesFilePath}`))

@@ -57,6 +57,10 @@ function createArrowFunctionString(file: DirectoryTree) {
 
 export function generateCustomPageObjectTypes(nightwatchProjectPath: string, page_objects_paths: string[]): GeneratedPageObject {
   for (const page_objects_path of page_objects_paths) {
+    if (page_objects_path.includes('node_modules')) {
+      continue
+    }
+    
     const tree = dirTree(page_objects_path)
     
     if (!tree.children) {
