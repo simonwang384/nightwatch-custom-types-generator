@@ -1,4 +1,5 @@
 dist
 node_modules
 tests_output
-tests/nightwatch/types/nightwatch.d.ts
+tests/nightwatch-v2/nightwatch/types/nightwatch.d.ts
+tests/nightwatch-v3/nightwatch/types/nightwatch.d.ts

@@ -22,12 +22,15 @@
     "build": "npm run clean && npx tsc --build && cpy --flat src/template/nightwatch.d.ts.hbs dist/template",
     "clean": "rimraf dist",
     "prepack": "npm run build",
-    "test": "npm run start -- -o -p tests && cd tests && npm install && npm run test:ci"
+    "test": "concurrently 'npm:test:*'",
+    "test:nightwatch-v2": "npm run start -- -o -p tests/nightwatch-v2 && cd tests/nightwatch-v2 && npm install && npm run test:ci",
+    "test:nightwatch-v3": "npm run start -- -o -p tests/nightwatch-v3 && cd tests/nightwatch-v3 && npm install && npm run test:ci"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/readline-sync": "^1.4.4",
+    "concurrently": "^8.2.0",
     "cpy-cli": "^5.0.0",
     "rimraf": "^5.0.1",
     "ts-node": "^10.9.1",
