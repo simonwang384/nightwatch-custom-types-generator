@@ -16,5 +16,7 @@ const landingPage: PageObjectModel = {
 export default landingPage;
 
 export interface LandingPage
-  extends EnhancedPageObject<typeof commands,
+
+
+extends EnhancedPageObject<typeof commands,
   typeof landingPage.elements> { }

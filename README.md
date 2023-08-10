@@ -84,8 +84,8 @@ The inner `nightwatch/tsconfig.json` file should just extend the root `tsconfig.
 
 If you need a reference to build off of you can take a look at this repos test Nightwatch project `tsconfig.json` files. 
 
-- Root Nightwatch project [tsconfig.json](https://github.com/simonwang384/nightwatch-custom-types-generator/blob/main/tests/tsconfig.json)
-- Inner Nightwatch project [tsconfig.json](https://github.com/simonwang384/nightwatch-custom-types-generator/blob/main/tests/nightwatch/tsconfig.json)
+- Root Nightwatch project [tsconfig.json](https://github.com/simonwang384/nightwatch-custom-types-generator/blob/main/tests/nightwatch-v3/tsconfig.json)
+- Inner Nightwatch project [tsconfig.json](https://github.com/simonwang384/nightwatch-custom-types-generator/blob/main/tests/nightwatch-v3/nightwatch/tsconfig.json)
 
 ### Page Objects
 
@@ -116,7 +116,7 @@ Example custom type that's generated:
 
 `ImageLandingPage` and `LandingPage` are interfaces declared in their respective page object files. You can use the page objects as you usually do but now the autocomplete should let you know what page objects are there!
 
-This guide won't go into detail on how to create page objects. If you want to learn how this is a good [guide](https://www.davidmello.com/using-nightwatch-with-typescript). Also feel free to view this repos [test Nightwatch project page objects](https://github.com/simonwang384/nightwatch-custom-types-generator/tree/main/tests/nightwatch/page-objects).
+This guide won't go into detail on how to create page objects. If you want to learn how this is a good [guide](https://www.davidmello.com/using-nightwatch-with-typescript). Also feel free to view this repos [test Nightwatch project page objects](https://github.com/simonwang384/nightwatch-custom-types-generator/tree/main/tests/nightwatch-v3/nightwatch/page-objects).
 
 ### Plugins
 
@@ -170,7 +170,7 @@ This isn't the best test but it will suffice for covering most of what the scrip
 
 > It's not importing the interfaces correctly
 
-- If it's not importing the interfaces correctly it most likely means you're not exporting the interfaces in a centralized located. It's recommended to create a `index.ts` file at the root of your page object directory that helps export all your relevant interfaces, functions, etc... You can see an example [here](https://github.com/simonwang384/nightwatch-custom-types-generator/blob/main/tests/nightwatch/page-objects/index.ts)
+- If it's not importing the interfaces correctly it most likely means you're not exporting the interfaces in a centralized located. It's recommended to create a `index.ts` file at the root of your page object directory that helps export all your relevant interfaces, functions, etc... You can see an example [here](https://github.com/simonwang384/nightwatch-custom-types-generator/blob/main/tests/nightwatch-v3/nightwatch/page-objects/index.ts)
 
 > What is the right project structure?
 

@@ -50,7 +50,7 @@ function createArrowFunctionString(file: DirectoryTree) {
     return '() => NightwatchPage'
   }
   const test = fileString.substring(fileString.indexOf('export interface'));
-  const interfaceName = test.split(' ')[2].trim();
+  const interfaceName = test.split(' ')[2].replace(/\r?\n|\r/gm, ' ').split(' ')[0];
   interfaces.push(interfaceName);
   return `() => ${interfaceName}`;
 }
